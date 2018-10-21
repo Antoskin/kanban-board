@@ -5,10 +5,6 @@ import {createTable} from './../actions'
 
 class AddTable extends Component {
 
-    // addTable = () => {
-    //     createTable()
-    // }
-
     render() {
         return (
         <Col lg={24}>

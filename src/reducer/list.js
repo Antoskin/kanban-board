@@ -1,6 +1,8 @@
-const list = {
+export const list = [
+    {
+        id: 0,
+        tableName: `default`
+    }
+]
 
-}
 
-
-export default list;
