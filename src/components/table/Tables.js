@@ -6,7 +6,7 @@ import TableItem from './TableItem'
 class Tables extends Component {
     render() {
         const tabler = this.props.table.map( (i, id) => 
-                <TableItem name={i.tableName} />
+                <TableItem name={i.tableName} key={id} ind={i.id} />
         )
         return (
             <React.Fragment>
