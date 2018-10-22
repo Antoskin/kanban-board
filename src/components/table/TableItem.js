@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Col, Card, Icon } from 'antd'
 
 import { delTable } from '../../actions/index'
+import TableTitle from './TableTitle'
 
 
 class TableItem extends Component {
@@ -18,7 +19,7 @@ class TableItem extends Component {
             <Col lg={8} md={8}>
                 <Card   
                     id={ind}
-                    title={ name }
+                    title={ <TableTitle name={name} ind={ind} /> }
                     extra={ <a onClick={this.handlerDelTable.bind(this, ind)} href="#">
                                 <Icon type="delete" theme="outlined" />
                             </a> } >

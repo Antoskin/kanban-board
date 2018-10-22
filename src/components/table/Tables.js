@@ -17,7 +17,7 @@ class Tables extends Component {
 }
 
 const mapStateToProps = ({table}) => {
-      return {table}
+      return { table }
 }
 
 export default connect( mapStateToProps )(Tables)

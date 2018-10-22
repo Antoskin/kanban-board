@@ -14,3 +14,11 @@ export function delTable(id) {
         payload: id
     }
 }
+
+export function changeTit( ch ) {
+    //console.log(`val ${ch.val} id: ${ch.id}`)
+    return {
+        type: 'CHANGE_TITLE',
+        payload: ch
+    }
+}
