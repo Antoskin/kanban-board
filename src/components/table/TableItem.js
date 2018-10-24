@@ -22,13 +22,11 @@ class TableItem extends Component {
                 <Card   
                     id={ind}
                     title={ <TableTitle name={name} ind={ind} /> }
-                    extra={ <a onClick={this.handlerDelTable.bind(this, ind)} href="#">
-                                <Icon type="delete" theme="outlined" />
-                            </a> } >
-
+                    extra={ <a onClick={this.handlerDelTable.bind(this, ind)} href="#"> 
+                                        <Icon type="delete" theme="outlined" /> </a> } >
 
                     <React.Fragment>
-                        <TasksList tasks={tasks} ind={ind} />
+                        <TasksList tasks={tasks} parentID={ind} />
                     </React.Fragment>
                     
                 </Card>

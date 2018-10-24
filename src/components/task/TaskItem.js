@@ -5,19 +5,21 @@ import RemoveTask from './RemoveTask'
 
 export default class TaskItem extends Component {
   render() {
-    const { tasks, ind } = this.props
-    console.log(tasks)
+    const { parentID, task } = this.props
+    //console.log(task)
    
-    const taskItem = tasks.map( task => 
-        <p key={task.task_id}> {task.task_short} </p>
+    const taskItem = task.map( task => 
+        <div 
+            style={{display:'flex',justifyContent:'space-between'}}
+            key={task.task_id}> 
+            {task.task_short} 
+            <RemoveTask parentIndex={parentID} ownIndex={task.task_id} /> 
+        </div>
     )
-
-    
-    //console.log(typeof tasks)
     
     return <React.Fragment>
-                    <AddTask parentIndex={ind}/>
-                    { taskItem }
+                    <AddTask parentIndex={parentID}/>
+                    {taskItem}
         </React.Fragment>
     }
 }

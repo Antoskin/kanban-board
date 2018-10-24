@@ -33,3 +33,13 @@ export function addTask( t, id ) {
        
     }
 }
+
+
+export function delTask( parID, ownID ) {
+    console.log(`del action ${parID} and ${ownID}`)
+    return {
+        type: 'DELL_TASK',
+        payload: { parID, ownID }
+       
+    }
+}

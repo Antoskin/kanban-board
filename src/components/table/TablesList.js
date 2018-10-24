@@ -12,6 +12,7 @@ class Tables extends Component {
                     name={i.tableName} 
                     tasks={i.tasks} />
         )
+        //console.log(tabler)
         return (
             <React.Fragment>
                 { tabler }
