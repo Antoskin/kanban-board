@@ -34,6 +34,14 @@ export function addTask( t, id ) {
     }
 }
 
+export function changeTask( t, parID ) {
+    return {
+        type: 'CHANGE_TASK',
+        payload: { t, parID }
+       
+    }
+}
+
 
 export function delTask( parID, ownID ) {
     console.log(`del action ${parID} and ${ownID}`)

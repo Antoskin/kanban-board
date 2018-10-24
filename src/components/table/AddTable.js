@@ -15,13 +15,13 @@ class AddTable extends Component {
             id: uuid(),
             tableName: `default`,
             tasks: [
-                {
-                    task_id: '', 
-                    task_short: '',
-                    task_full: '',
-                    time_created: '',
-                    time_created: null, 
-                }
+                // {
+                //     task_id: '', 
+                //     task_short: '',
+                //     task_full: '',
+                //     time_created: '',
+                //     time_created: null, 
+                // }
             ]
         }
 

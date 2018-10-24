@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AddTask from './AddTask'
 import RemoveTask from './RemoveTask'
+import ChangeTask from './ChangeTask'
 
 
 export default class TaskItem extends Component {
@@ -13,7 +14,14 @@ export default class TaskItem extends Component {
             style={{display:'flex',justifyContent:'space-between'}}
             key={task.task_id}> 
             {task.task_short} 
-            <RemoveTask parentIndex={parentID} ownIndex={task.task_id} /> 
+            <span style={{display:'flex'}} >
+                <ChangeTask
+                    shortText={task.task_short}
+                    fullText={task.task_full} 
+                    parentIndex={parentID} 
+                    ownIndex={task.task_id} />
+                <RemoveTask parentIndex={parentID} ownIndex={task.task_id} /> 
+            </span>
         </div>
     )
     

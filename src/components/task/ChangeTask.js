@@ -1,82 +1,60 @@
 import React, { Component } from 'react'
 import { Modal, Button, Icon, Input } from 'antd';
 import uuid from 'uuid'
-//import Time from 'react-time'
 
-
-import {addTask} from '../../actions'
+import {changeTask} from '../../actions'
 
 import { connect } from 'react-redux'
 
-class AddTask extends Component {
+class ChangeTask extends Component {
     state = { 
         visible: false ,
         parentId: null,
-        task: {
-            // task_id: 0, 
-            // task_short: '',
-            // task_full: '',
-            // time_created: '',
-            // time_changed: null, 
-        }
+        changed_title: '',
+        changed_text: '',
     }
 
     // antd
     showModal = () => this.setState({ visible: true }) 
 
 
-    handleInputTaskShort = (e) => {
+    handleInput = (e) => {
         this.setState({
-            task: {
-                ...this.state.task,
-                task_short: e.target.value,
-                task_id: uuid()
-            }
+            [e.target.name]: e.target.value
         })
     }
-
-    handleInputTaskFull = (e) => {
-        let now = new Date()
-          
-        this.setState({
-            task: {
-                ...this.state.task,
-                time_created: now,
-                task_full: e.target.value
-            }
-        })
-    } 
 
     onSubmit = (e) => {
         e.preventDefault()
         const parentId = this.props.parentIndex
-        if( !this.state.task.task_short == '' && !this.state.task.task_full == '' ) {
-            this.props.addTask(this.state.task, parentId )
+        const { changed_title, changed_text } = this.state
+        if( !changed_title == '' && !changed_text == '' ) {
+            //this.props.changeTask(changed_title, changed_text, parentId )
             this.setState({ visible: false })
         } 
-        this.setState({
-            task: {
-                ...this.state.task,
-                task_short: '',
-                task_full: '',
-                task_id: null
-            }
-        })
     }
 
     cancelClose() {
         this.setState({ visible: false })  
     }
 
+
+    componentDidMount() {
+        const { shortText, fullText } = this.props
+        this.setState({
+            changed_title: shortText,
+            changed_text: fullText
+        })
+    }
+
     render() {
         const { TextArea } = Input;
-        const { task, task_short } = this.state
-        // console.log(this.state.task.task_short)
+        let { task, changed_title, changed_text } = this.state
         return (
             <React.Fragment>
-                <Button type="primary" onClick={this.showModal}>
+                <span type="primary" style={{cursor:'pointer'}} onClick={this.showModal}>
                     <Icon type="plus-circle" theme="twoTone" /> 
-                </Button>
+                </span>
                 <Modal 
                     footer={null}
                     closable={false}
@@ -85,14 +63,16 @@ class AddTask extends Component {
                     <form onSubmit={this.onSubmit} >
                         <Input 
                             placeholder="excerpt" 
-                            value={task.task_short}
-                            onChange={ this.handleInputTaskShort }
+                            name="changed_title"
+                            value={changed_title}
+                            onChange={ this.handleInput }
                             />
                         <div style={{ margin: '24px 0' }} />
                         <TextArea 
                             placeholder="complete..." 
-                            value={task.task_full}
-                            onChange={ this.handleInputTaskFull }
+                            name="changed_text"
+                            value={changed_text}
+                            onChange={ this.handleInput }
                             />
                         <div style={{ margin: '24px 0' }} />
                         
@@ -109,7 +89,7 @@ class AddTask extends Component {
 }
 
 const mapDispatchToProps = {
-    addTask
+    changeTask
 }
 
-export default connect(null, mapDispatchToProps)(AddTask)
+export default connect(null, mapDispatchToProps)(ChangeTask)
