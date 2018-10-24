@@ -13,10 +13,10 @@ export default (state = list, action) => {
             let basket = state.map( bas => bas.id == payload.id ? bas.tableName = payload.val : bas )
             //return basket
             return [...state]
-        case 'ADD_TASK':
-            //console.log(`sdad`)
-            const newer = state.map( tas =>  tas.id == payload.id ? tas.tasks.push(payload.t) : tas)
-            return [...state]
+        // case 'ADD_TASK':
+        //     //console.log(`sdad`)
+        //     const newer = state.map( tas =>  tas.id == payload.id ? tas.tasks.push(payload.t) : tas)
+        //     return [...state]
             
         default:
             return state

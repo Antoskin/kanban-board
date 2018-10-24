@@ -9,9 +9,7 @@ export default class TaskItem extends Component {
     console.log(tasks)
    
     const taskItem = tasks.map( task => 
-        <p key={task.task_id}> {task.task_short} 
-            <RemoveTask/>
-        </p>
+        <p key={task.task_id}> {task.task_short} </p>
     )
 
     
