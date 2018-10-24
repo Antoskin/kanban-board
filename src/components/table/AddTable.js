@@ -14,6 +14,15 @@ class AddTable extends Component {
         const newTable = {
             id: uuid(),
             tableName: `default`,
+            tasks: [
+                {
+                    task_id: '', 
+                    task_short: '',
+                    task_full: '',
+                    time_created: '',
+                    time_created: null, 
+                }
+            ]
         }
 
         this.props.createTable(newTable)

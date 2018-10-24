@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
-import { Input, Button } from 'antd'
+import { Input, Button, Icon } from 'antd'
 
 import {changeTit} from '../../actions'
 
@@ -9,7 +9,7 @@ class TableTitle extends Component {
 
     state = {
         sw: false,
-        inputVal: ``
+        inputVal: 'default'
     }
 
     handleToInput() {
@@ -56,14 +56,20 @@ class TableTitle extends Component {
 
 
 const TitleText = ({name, toInpt}) => 
-                <span onClick={toInpt}>
+                <span>
                     {name}
+                    <Icon 
+                        onClick={toInpt} 
+                        style={{ cursor: 'pointer' }}
+                        type="edit" 
+                        theme="twoTone" />
                 </span>
 
 const TitleInput = ({val, toTxt, change}) => 
     <React.Fragment>
         <Input 
-            type="text" value={val} 
+            type="text" 
+            value={val} 
             placeholder="change title..." 
             onChange={change} />
         <Button 

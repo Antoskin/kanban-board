@@ -22,3 +22,14 @@ export function changeTit( ch ) {
         payload: ch
     }
 }
+
+
+export function addTask( t, id ) {
+    // console.log(`action task ${t.task_short} and ${t.task_full}`)
+    //console.log(id)
+    return {
+        type: 'ADD_TASK',
+        payload: { t, id }
+       
+    }
+}

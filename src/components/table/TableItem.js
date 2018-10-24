@@ -5,6 +5,8 @@ import { Col, Card, Icon } from 'antd'
 import { delTable } from '../../actions/index'
 import TableTitle from './TableTitle'
 
+import TasksList from '../task/TasksList'
+
 
 class TableItem extends Component {
 
@@ -14,7 +16,7 @@ class TableItem extends Component {
     }
 
     render() {
-        const { name, ind } = this.props
+        const { name, ind, tasks } = this.props
         return (
             <Col lg={8} md={8}>
                 <Card   
@@ -24,7 +26,10 @@ class TableItem extends Component {
                                 <Icon type="delete" theme="outlined" />
                             </a> } >
 
-                    <p>Card content</p>
+
+                    <React.Fragment>
+                        <TasksList tasks={tasks} ind={ind} />
+                    </React.Fragment>
                     
                 </Card>
             </Col>
