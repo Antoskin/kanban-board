@@ -64,6 +64,7 @@ class ChangeTask extends Component {
     render() {
         const { TextArea } = Input;
         let { task } = this.state
+        
         return (
             <React.Fragment>
                 <span type="primary" style={{cursor:'pointer'}} onClick={this.showModal}>
