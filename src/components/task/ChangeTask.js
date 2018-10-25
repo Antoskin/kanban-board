@@ -35,11 +35,11 @@ class ChangeTask extends Component {
     onSubmit = (e) => {
         e.preventDefault()
       const { task } = this.state
-        const {  keyId, parentIndex} = this.props
+        const {  ownIndex, parentIndex} = this.props
      
             //console.log( this.state.task )
         
-            this.props.changeTask(task, keyId, parentIndex)
+            this.props.changeTask(task, ownIndex, parentIndex)
 
             this.setState({ visible: false })
         
@@ -67,7 +67,7 @@ class ChangeTask extends Component {
         return (
             <React.Fragment>
                 <span type="primary" style={{cursor:'pointer'}} onClick={this.showModal}>
-                    <Icon type="plus-circle" theme="twoTone" /> 
+                    <Icon type="edit" theme="twoTone" />
                 </span>
                 <Modal 
                     footer={null}
