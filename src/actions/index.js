@@ -34,10 +34,10 @@ export function addTask( t, id ) {
     }
 }
 
-export function changeTask( t, parID ) {
+export function changeTask( update, ownId, parentId ) {
     return {
         type: 'CHANGE_TASK',
-        payload: { t, parID }
+        payload: { update, ownId, parentId }
        
     }
 }

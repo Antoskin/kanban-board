@@ -10,8 +10,9 @@ class ChangeTask extends Component {
     state = { 
         visible: false ,
         parentId: null,
-        changed_title: '',
-        changed_text: '',
+        task: { 
+
+        }
     }
 
     // antd
@@ -19,19 +20,29 @@ class ChangeTask extends Component {
 
 
     handleInput = (e) => {
+     
+        let upd = new Date()
         this.setState({
-            [e.target.name]: e.target.value
+            task: {
+                ...this.state.task,
+                [e.target.name]: e.target.value,
+                time_created: upd,
+                task_id: uuid()
+            }
         })
     }
 
     onSubmit = (e) => {
         e.preventDefault()
-        const parentId = this.props.parentIndex
-        const { changed_title, changed_text } = this.state
-        if( !changed_title == '' && !changed_text == '' ) {
-            //this.props.changeTask(changed_title, changed_text, parentId )
+      const { task } = this.state
+        const {  keyId, parentIndex} = this.props
+     
+            //console.log( this.state.task )
+        
+            this.props.changeTask(task, keyId, parentIndex)
+
             this.setState({ visible: false })
-        } 
+        
     }
 
     cancelClose() {
@@ -42,14 +53,17 @@ class ChangeTask extends Component {
     componentDidMount() {
         const { shortText, fullText } = this.props
         this.setState({
-            changed_title: shortText,
-            changed_text: fullText
+            task: {
+                ...this.state.task,
+                task_short: shortText,
+                task_full: fullText
+            }
         })
     }
 
     render() {
         const { TextArea } = Input;
-        let { task, changed_title, changed_text } = this.state
+        let { task } = this.state
         return (
             <React.Fragment>
                 <span type="primary" style={{cursor:'pointer'}} onClick={this.showModal}>
@@ -63,15 +77,15 @@ class ChangeTask extends Component {
                     <form onSubmit={this.onSubmit} >
                         <Input 
                             placeholder="excerpt" 
-                            name="changed_title"
-                            value={changed_title}
+                            name="task_short"
+                            value={task.task_short}
                             onChange={ this.handleInput }
                             />
                         <div style={{ margin: '24px 0' }} />
                         <TextArea 
                             placeholder="complete..." 
-                            name="changed_text"
-                            value={changed_text}
+                            name="task_full"
+                            value={task.task_full}
                             onChange={ this.handleInput }
                             />
                         <div style={{ margin: '24px 0' }} />

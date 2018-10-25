@@ -12,40 +12,23 @@ class AddTask extends Component {
     state = { 
         visible: false ,
         parentId: null,
-        task: {
-            // task_id: 0, 
-            // task_short: '',
-            // task_full: '',
-            // time_created: '',
-            // time_changed: null, 
-        }
+        task: { }
     }
 
     // antd
     showModal = () => this.setState({ visible: true }) 
 
-
-    handleInputTaskShort = (e) => {
+    handleInput = (e) => {
+        let now = new Date()
         this.setState({
             task: {
                 ...this.state.task,
-                task_short: e.target.value,
+                [e.target.name]: e.target.value,
+                time_created: now,
                 task_id: uuid()
             }
         })
     }
-
-    handleInputTaskFull = (e) => {
-        let now = new Date()
-          
-        this.setState({
-            task: {
-                ...this.state.task,
-                time_created: now,
-                task_full: e.target.value
-            }
-        })
-    } 
 
     onSubmit = (e) => {
         e.preventDefault()
@@ -85,14 +68,16 @@ class AddTask extends Component {
                     <form onSubmit={this.onSubmit} >
                         <Input 
                             placeholder="excerpt" 
+                            name="task_short"
                             value={task.task_short}
-                            onChange={ this.handleInputTaskShort }
+                            onChange={ this.handleInput }
                             />
                         <div style={{ margin: '24px 0' }} />
                         <TextArea 
                             placeholder="complete..." 
+                            name="task_full"
                             value={task.task_full}
-                            onChange={ this.handleInputTaskFull }
+                            onChange={ this.handleInput }
                             />
                         <div style={{ margin: '24px 0' }} />
                         

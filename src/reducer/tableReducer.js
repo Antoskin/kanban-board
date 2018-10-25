@@ -15,17 +15,30 @@ export default (state = list, action) => {
         case 'ADD_TASK':
             //const newer = state.map( tas =>  tas.id == payload.id ? tas.tasks.push(payload.t) : tas)
             return state.map( tas => 
-                                tas.id == payload.id ? 
-                                { ...tas, 
-                                    tasks: [...tas.tasks, payload.t] 
-                                } : 
-                                tas)
+                        tas.id == payload.id ? 
+                            { ...tas,  tasks: [...tas.tasks, payload.t] } : 
+                            tas
+                )
         case 'CHANGE_TASK':
-            //t, parID
-            // return state.map( st => 
-                
-            // )                                
-            //console.log(`reducer change task`)
+        //update, ownId, parentId
+            return state.map( item => {
+                if( item.id == payload.parentId ) {
+                    return {
+                        ...item,
+                        tasks: item.tasks.map( task => {
+                            if( task.task_id ==  payload.ownId) {
+                                return {
+                                    ...task, ...payload.update
+                                }
+                            }
+                            return task
+                        } )
+                    }
+                } 
+                return item
+            } )
+
+          
         case 'DELL_TASK':
             return state.map( del => 
                                 del.id == payload.parID ? 

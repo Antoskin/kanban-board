@@ -9,7 +9,7 @@ export default class TaskItem extends Component {
     const { parentID, task } = this.props
     //console.log(task)
    
-    const taskItem = task.map( task => 
+    const taskItem = task.map( (task, ind ) => 
         <div 
             style={{display:'flex',justifyContent:'space-between'}}
             key={task.task_id}> 
@@ -19,7 +19,9 @@ export default class TaskItem extends Component {
                     shortText={task.task_short}
                     fullText={task.task_full} 
                     parentIndex={parentID} 
-                    ownIndex={task.task_id} />
+                    ownIndex={task.task_id}
+                    keyId={ind} 
+                    />
                 <RemoveTask parentIndex={parentID} ownIndex={task.task_id} /> 
             </span>
         </div>
