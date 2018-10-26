@@ -32,7 +32,10 @@ function loadFromLocalStorage() {
 
 const persistedState = loadFromLocalStorage()
 
-const store = createStore(reducer, persistedState)
+const store = createStore(
+    reducer, 
+    persistedState
+)
 
 store.subscribe(() => saveToLocalStorage(store.getState()))
 
