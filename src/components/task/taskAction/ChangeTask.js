@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Modal, Button, Icon, Input } from 'antd';
 import uuid from 'uuid'
 
-import {changeTask} from '../../actions'
+import {changeTask} from '../../../actions'
 
 import { connect } from 'react-redux'
 
@@ -10,14 +10,30 @@ class ChangeTask extends Component {
     state = { 
         visible: false ,
         parentId: null,
-        task: { 
-
-        }
+        task: { }
     }
 
     // antd
     showModal = () => this.setState({ visible: true }) 
+    cancelClose() { this.setState({ visible: false }) }
 
+
+    addZero(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    theTime = () => {
+        const timer = new Date()
+        const h = this.addZero(timer.getHours())
+        const m = this.addZero(timer.getMinutes())
+        const s = this.addZero(timer.getSeconds())
+
+        const tt = `${h}: ${m}: ${s}`
+
+        return tt
+    }
 
     handleInput = (e) => {
      
@@ -26,37 +42,33 @@ class ChangeTask extends Component {
             task: {
                 ...this.state.task,
                 [e.target.name]: e.target.value,
-                time_created: upd,
-                task_id: uuid()
+                time_changed: this.theTime()
             }
         })
     }
 
     onSubmit = (e) => {
         e.preventDefault()
-      const { task } = this.state
+        const { task } = this.state
         const {  ownIndex, parentIndex} = this.props
      
-            //console.log( this.state.task )
-        
             this.props.changeTask(task, ownIndex, parentIndex)
 
             this.setState({ visible: false })
-        
     }
 
-    cancelClose() {
-        this.setState({ visible: false })  
-    }
+    
 
 
     componentDidMount() {
-        const { shortText, fullText } = this.props
+        const { task } = this.props
         this.setState({
             task: {
                 ...this.state.task,
-                task_short: shortText,
-                task_full: fullText
+                task_short: task.task_short,
+                task_full: task.task_full,
+                time_created: task.time_created,
+                task_id: task.task_id
             }
         })
     }
@@ -67,34 +79,39 @@ class ChangeTask extends Component {
         
         return (
             <React.Fragment>
-                <span type="primary" style={{cursor:'pointer'}} onClick={this.showModal}>
-                    <Icon type="edit" theme="twoTone" />
+                <span 
+                    className="hover"
+                    type="primary" 
+                    onClick={this.showModal}>
+                        <Icon type="edit" 
+                    theme="twoTone" />
                 </span>
                 <Modal 
                     footer={null}
                     closable={false}
                     visible={this.state.visible} >
 
-                    <form onSubmit={this.onSubmit} >
+                    <form 
+                        onSubmit={this.onSubmit} 
+                        className="form" >
                         <Input 
                             placeholder="excerpt" 
                             name="task_short"
                             value={task.task_short}
-                            onChange={ this.handleInput }
-                            />
-                        <div style={{ margin: '24px 0' }} />
+                            onChange={ this.handleInput } />
                         <TextArea 
                             placeholder="complete..." 
                             name="task_full"
                             value={task.task_full}
-                            onChange={ this.handleInput }
-                            />
-                        <div style={{ margin: '24px 0' }} />
-                        
-                        <Input type="submit" value="ok" style={{cursor:'pointer'}} />
+                            onChange={ this.handleInput } />
+                        <Input 
+                            type="submit" 
+                            value="ok" />
                             
-                        <Button onClick={this.cancelClose.bind(this)} type="danger" block>cancel</Button>
-
+                        <Button 
+                            className="w-btn"
+                            onClick={this.cancelClose.bind(this)} 
+                            type="danger" >Cancel</Button>
                     </form>
                    
                 </Modal>

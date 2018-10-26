@@ -26,7 +26,10 @@ class TableItem extends Component {
                                         <Icon type="delete" theme="outlined" /> </a> } >
 
                     <React.Fragment>
-                        <TasksList tasks={tasks} parentID={ind} />
+                        <TasksList 
+                            tasks={tasks} 
+                            parentID={ind}  
+                            parentName={name} />
                     </React.Fragment>
                     
                 </Card>

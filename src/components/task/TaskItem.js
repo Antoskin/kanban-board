@@ -1,34 +1,37 @@
 import React, { Component } from 'react'
-import AddTask from './AddTask'
-import RemoveTask from './RemoveTask'
-import ChangeTask from './ChangeTask'
+
+import RemoveTask from './taskAction/RemoveTask'
+import ChangeTask from './taskAction/ChangeTask'
+import TaskDetails from './TaskDetails'
 
 
 export default class TaskItem extends Component {
   render() {
-    const { parentID, task } = this.props
-    //console.log(task)
+    const { parentID, parentName, task } = this.props
    
-    const taskItem = task.map( (task, ind ) => 
+    const taskItem = task.map( task => 
         <div 
-            style={{display:'flex',justifyContent:'space-between'}}
+            className="task_item"
             key={task.task_id}> 
             {task.task_short} 
-            <span style={{display:'flex'}} >
-                <ChangeTask
-                    shortText={task.task_short}
-                    fullText={task.task_full} 
+            <span className="task_item__btns" >
+                <TaskDetails
+                    parentName={parentName}
                     parentIndex={parentID} 
-                    ownIndex={task.task_id}
-                    keyId={ind} 
-                    />
-                <RemoveTask parentIndex={parentID} ownIndex={task.task_id} /> 
+                    task={task}
+                />
+                <ChangeTask
+                    task={task}
+                    parentIndex={parentID} 
+                    ownIndex={task.task_id} />
+                <RemoveTask 
+                    parentIndex={parentID} 
+                    ownIndex={task.task_id} /> 
             </span>
         </div>
     )
     
     return <React.Fragment>
-                    <AddTask parentIndex={parentID}/>
                     {taskItem}
         </React.Fragment>
     }

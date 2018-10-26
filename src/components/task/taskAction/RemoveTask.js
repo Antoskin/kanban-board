@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Icon } from 'antd'
 
-import { delTask } from '../../actions'
+import { delTask } from '../../../actions'
 
 import {connect} from 'react-redux'
 
@@ -18,9 +18,9 @@ import {connect} from 'react-redux'
         return (
             <div>
                 <Icon 
+                    className="hover"
                     type="close-square" 
                     theme="twoTone" 
-                    style={{cursor:'pointer'}} 
                     onClick={ this.handleDelTask.bind(this) } />
             </div>
         )

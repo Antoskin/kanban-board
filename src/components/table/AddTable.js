@@ -14,15 +14,7 @@ class AddTable extends Component {
         const newTable = {
             id: uuid(),
             tableName: `default`,
-            tasks: [
-                // {
-                //     task_id: '', 
-                //     task_short: '',
-                //     task_full: '',
-                //     time_created: '',
-                //     time_created: null, 
-                // }
-            ]
+            tasks: []
         }
 
         this.props.createTable(newTable)
@@ -30,8 +22,10 @@ class AddTable extends Component {
 
     render() {
         return (
-            <Col lg={24}>
-                <Button onClick={this.handlerCreateTable}>create</Button>
+            <Col lg={24} >
+                <Button 
+                    className="add-table_btn w-btn" 
+                    onClick={this.handlerCreateTable}>Create table</Button>
             </Col>
         )
     }
