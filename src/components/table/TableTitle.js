@@ -54,7 +54,6 @@ class TableTitle extends Component {
     }
 }
 
-
 const TitleText = ({name, toInpt}) => 
                 <span>
                     {name}
