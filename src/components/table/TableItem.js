@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Col, Card, Icon } from 'antd'
 
 import { delTable } from '../../actions/index'
-import TableTitle from './TableTitle'
+import TableTitle from './Title/TableTitle'
 
 import TasksList from '../task/TasksList'
 

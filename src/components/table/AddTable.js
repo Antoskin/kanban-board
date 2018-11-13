@@ -10,7 +10,6 @@ import { createTable } from '../../actions'
 class AddTable extends Component {
 
     handlerCreateTable = () => {
-
         const newTable = {
             id: uuid(),
             tableName: `default`,
@@ -25,7 +24,8 @@ class AddTable extends Component {
             <Col lg={24} >
                 <Button 
                     className="add-table_btn w-btn" 
-                    onClick={this.handlerCreateTable}>Create table</Button>
+                    onClick={this.handlerCreateTable}>Create table
+                </Button>
             </Col>
         )
     }

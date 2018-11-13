@@ -30,14 +30,14 @@ function loadFromLocalStorage() {
     }
 }
 
-const persistedState = loadFromLocalStorage()
+//const persistedState = loadFromLocalStorage()
 
 const store = createStore(
     reducer, 
-    persistedState
+    //persistedState
 )
 
-store.subscribe(() => saveToLocalStorage(store.getState()))
+///store.subscribe(() => saveToLocalStorage(store.getState()))
 
 ReactDOM.render(<Provider store={store} ><App /></Provider>, document.getElementById('app'));
 
