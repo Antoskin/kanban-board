@@ -6,7 +6,6 @@ export default (state = list, action) => {
     switch(type) {
         case 'ADD_TABLE':
             return [...state, payload]
-            //console.log(`in reducer`)
         case 'DELL_TABLE':
             return  state.filter( ( tabl ) => tabl.id !== payload )   
         case 'CHANGE_TITLE':
