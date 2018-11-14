@@ -10,9 +10,9 @@ import TasksList from '../task/TasksList'
 
 class TableItem extends Component {
 
-    handlerDelTable = (ind, e) => {
+    handlerDelTable = (e) => {
         e.preventDefault()
-        this.props.delTable(ind)
+        this.props.delTable(this.props.ind)
     }
 
     render() {
@@ -22,15 +22,15 @@ class TableItem extends Component {
                 <Card   
                     id={ind}
                     title={ <TableTitle name={name} ind={ind} /> }
-                    extra={ <a onClick={this.handlerDelTable.bind(this, ind)} href="#"> 
+                    extra={ <a onClick={ this.handlerDelTable } href="#"> 
                                         <Icon type="delete" theme="outlined" /> </a> } >
 
-                    <React.Fragment>
+                    <>
                         <TasksList 
                             tasks={tasks} 
                             parentID={ind}  
                             parentName={name} />
-                    </React.Fragment>
+                    </>
                     
                 </Card>
             </Col>

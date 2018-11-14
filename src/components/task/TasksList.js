@@ -11,18 +11,18 @@ class TasksList extends Component {
     render() {
         const { tasks, parentID, parentName } = this.props
 
-        return <React.Fragment>
-        { tasks.map( i => (
-                    <TaskItem 
-                        key={i.task_id}
-                        task={ i }
-                        parentID={ parentID } 
-                        parentName={parentName}
-                        handleDrop={(id) => this.deleteTask(id)  }
-                    />
-        ))}
+        return <>
+                { tasks.map( i => (
+                            <TaskItem 
+                                key={i.task_id}
+                                task={ i }
+                                parentID={ parentID } 
+                                parentName={parentName}
+                                handleDrop={(id) => this.deleteTask(id)  }
+                            />
+                ))}
                 <AddTask parentIndex={parentID} />
-        </React.Fragment>
+        </>
     }
 }
 

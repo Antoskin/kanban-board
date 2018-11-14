@@ -5,6 +5,7 @@ import uuid from 'uuid'
 import {changeTask} from '../../../actions'
 
 import { connect } from 'react-redux'
+import TheTime from './Time'
 
 class ChangeTask extends Component {
     state = { 
@@ -17,32 +18,15 @@ class ChangeTask extends Component {
     showModal = () => this.setState({ visible: true }) 
     cancelClose() { this.setState({ visible: false }) }
 
-
-    addZero(i) {
-        if (i < 10) {
-            i = "0" + i;
-        }
-        return i;
-    }
-    theTime = () => {
-        const timer = new Date()
-        const h = this.addZero(timer.getHours())
-        const m = this.addZero(timer.getMinutes())
-        const s = this.addZero(timer.getSeconds())
-
-        const tt = `${h}: ${m}: ${s}`
-
-        return tt
-    }
-
     handleInput = (e) => {
      
-        let upd = new Date()
+        let time = new TheTime()
+
         this.setState({
             task: {
                 ...this.state.task,
                 [e.target.name]: e.target.value,
-                time_changed: this.theTime()
+                time_changed: time.getTime()
             }
         })
     }
@@ -56,8 +40,6 @@ class ChangeTask extends Component {
 
             this.setState({ visible: false })
     }
-
-    
 
 
     componentDidMount() {

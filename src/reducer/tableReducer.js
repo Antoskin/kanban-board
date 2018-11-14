@@ -10,8 +10,16 @@ export default (state = list, action) => {
         case 'DELL_TABLE':
             return  state.filter( ( tabl ) => tabl.id !== payload )   
         case 'CHANGE_TITLE':
-            let basket = state.map( bas => bas.id === payload.id ? bas.tableName = payload.val : bas )
-            return [...state]
+            return state.map( bas => 
+                bas.id === payload.id ?
+                    {
+                        ...bas, 
+                        tableName: [bas.tableName = '', ...payload.val] 
+                    }
+                    : 
+                    bas 
+            )
+
         case 'ADD_TASK':
             //const newer = state.map( tas =>  tas.id == payload.id ? tas.tasks.push(payload.t) : tas)
             return state.map( tas => 

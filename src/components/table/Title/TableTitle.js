@@ -39,7 +39,7 @@ class TableTitle extends Component {
         const { sw, inputVal } = this.state
       
         return (
-            <React.Fragment>
+            <>
                 {
                     !sw ? <TitleText 
                                 name={name} 
@@ -49,7 +49,7 @@ class TableTitle extends Component {
                                 toTxt={this.handleToText}  
                                 change={this.changeTitle} />
                 }
-            </React.Fragment>
+            </>
         )
     }
 }

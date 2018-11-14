@@ -5,22 +5,22 @@ import TableItem from './TableItem'
 
 class Tables extends Component {
     render() {
-        const tabler = this.props.table.map( (i, id) => 
-                <TableItem 
-                    key={id} 
-                    ind={i.id}
-                    name={i.tableName} 
-                    tasks={i.tasks} />
-        )
         return (
-            <React.Fragment>
-                { tabler }
-            </React.Fragment>
+            <>
+                { 
+                    this.props.table.map( (i, id) => 
+                        <TableItem 
+                            key={id} 
+                            ind={i.id}
+                            name={i.tableName} 
+                            tasks={i.tasks} />
+                )}
+            </>
         )
     }
 }
 
-const mapStateToProps = ({table}) => {
+const mapStateToProps = ({ table }) => {
       return { table }
 }
 

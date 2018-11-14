@@ -14,17 +14,8 @@ export default class TaskDetails extends Component {
   }
 
   handleOk = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  }
-
-  handleCancel = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
+    console.log(e)
+    this.setState({ visible: false })
   }
 
   render() {
@@ -41,7 +32,7 @@ export default class TaskDetails extends Component {
             title={parentName}
             visible={this.state.visible}
             onOk={this.handleOk}
-            onCancel={this.handleCancel} >
+            onCancel={this.handleOk} >
           <b>short</b>
           <p>{task.task_short}</p>
           <b>full</b>

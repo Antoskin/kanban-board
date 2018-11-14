@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
  class RemoveTask extends Component {
 
 
-    handleDelTask() {
+    handleDelTask =() => {
         const {parentIndex, ownIndex} = this.props
         this.props.delTask( parentIndex,  ownIndex)
     }
@@ -21,7 +21,7 @@ import {connect} from 'react-redux'
                     className="hover"
                     type="close-square" 
                     theme="twoTone" 
-                    onClick={ this.handleDelTask.bind(this) } />
+                    onClick={ this.handleDelTask } />
             </div>
         )
     }
